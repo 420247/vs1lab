@@ -46,8 +46,65 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+.header__image {
+  max-width: 10%; 
+  height: auto; 
+}
 
+.tagging label,
+.tagging input[type="text"] {
+  display: block;
+  margin-bottom: 10px; 
+}
+
+.tagging input[type="text"] {
+  width: 200px;
+}
+
+.tagging fieldset {
+  padding: 10px; 
+}
+
+.discovery fieldset {
+  padding: 10px;
+}
+
+.discovery label,
+.discovery input[type="text"],
+.discovery input[type="submit"] {
+  display: block;
+  width: 200px; 
+  margin-bottom: 10px; 
+}
+
+.discovery input[type="submit"] {
+  margin-top: 10px; 
+}
+
+.discovery__results {
+  list-style: none; 
+  padding: 10px; 
+}
+
+.discovery__results li {
+  color: var(--link-color); 
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  border: 2px solid var(--border-color); 
+  width: 280px;
+}
+
+.discovery__wrapper {
+  display: flex; 
+}
+
+.discovery__taglist {
+  flex: 1; 
+}
+
+.discovery__map {
+  flex: 1; 
+}
 
 /* Grid styles (no changes required) */
 
@@ -106,32 +163,49 @@ a {
   width: calc(100% - 1rem);
 }
 
+/* Header styling */
+.header {
+  background-color: var(--background-color);
+  color: black;
+  padding: 5px;
+}
 
-/* ### TODO ### Styles for Header Component */
+/* Main container */
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 5px;
+}
 
-/* ... your code here ... */
+/* Tagging styling */
+.tagging {
+  flex: 1;
+  margin-right: 10px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+}
 
+/* Discovery styling */
+.discovery {
+  flex: 2;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
 
-/* ### TODO ### Styles for Main Component */
+/* Footer styling */
+.footer {
+  background-color: var(--background-color);
+  color: white;
+  padding: 10px;
+}
 
-/* ... your code here ... */
-
-
-/* ### TODO ### Styles for Tagging component */
-
-/* ... your code here ... */
-
-
-/* ### TODO ### Styles for Discovery component */
-
-/* ... your code here ... */
-
-
-/* ### TODO ### Styles for Footer Component */
-
-/* ... your code here ... */
-
-
-/* ### TODO ### Media Queries */
-
-/* ... your code here ... */
+/* Media query for responsive design */
+@media (max-width: 850px) {
+  .main {
+      flex-direction: column;
+  }
+  
+}

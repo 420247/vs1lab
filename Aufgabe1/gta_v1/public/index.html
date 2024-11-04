@@ -27,9 +27,18 @@
 
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
-
-                <!-- ... your code here ... -->
-
+                <fieldset>
+                    <legend>Tagging Information</legend>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter name (max 10 chars)" maxlength="10" required>
+                    <label for="hashtag">Hashtag (optional):</label>
+                    <input type="text" id="hashtag" name="hashtag" placeholder="Enter hashtag (10 chars)" pattern="#[A-Za-z0-9]{1,10}">
+                    <label for="latitude">Latitude:</label>
+                    <input type="text" id="latitude" name="latitude" value="" readonly>
+                    <label for="longitude">Longitude:</label>
+                    <input type="text" id="longitude" name="longitude" value="" readonly>
+                    <input type="submit" value="Submit">
+                </fieldset>
             </form>
             <!-- ############### VS1Lab 1a Form 1 End -->
 
@@ -41,7 +50,15 @@
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
 
-                <!-- ... your code here ... -->
+                <fieldset>
+                    <legend>Search</legend>
+                    <label for="search">Search Term or keywords:</label>
+                    <input type="text" id="search" name="search" placeholder="e.g. Berlin" maxlength="30">
+                    <input type="submit" value="Submit">
+                </fieldset>
+                <input type="hidden" id="latitude-discovery" name="latitude" value="49.01379">
+                <input type="hidden" id="longitude-discovery" name="longitude" value="8.404435">
+                
 
             </form>
             <!-- ############### VS1Lab 1a Form 2 End -->
