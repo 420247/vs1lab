@@ -47,7 +47,7 @@ a {
 /* ### TODO ### Styles for other HTML elements */
 
 .header__image {
-  max-width: 10%; 
+  max-width: 5%; 
   height: auto; 
 }
 
@@ -96,6 +96,7 @@ a {
 
 .discovery__wrapper {
   flex: 1;
+  display: flex;
   flex-wrap: wrap; /* Flexbox verwenden */
 }
 
@@ -168,11 +169,12 @@ a {
 .header {
   background-color: var(--background-color);
   color: black;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
 }
 
 /* Main container */
@@ -213,8 +215,22 @@ a {
 
 /* Media query for responsive design */
 @media (max-width: 850px) {
+  
   .main {
       flex-direction: column;
+      min-width: 100vh;
+  }
+  
+  .header{
+    min-width: 100vh;
+  }
+
+  .footer{
+    min-width: 100vh;
+  }
+  
+
   }
   
 }
+
