@@ -53,6 +53,7 @@ a {
 
 .tagging label,
 .tagging input[type="text"] {
+
   display: block; /* Ändern Sie die Anzeige auf block */
   margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
 }
@@ -67,11 +68,28 @@ a {
 
 .discovery fieldset {
   padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
+=======
+  display: block;
+  margin-bottom: 10px; 
+}
+
+.tagging input[type="text"] {
+  width: 200px;
+}
+
+.tagging fieldset {
+  padding: 10px; 
+}
+
+.discovery fieldset {
+  padding: 10px;
+
 }
 
 .discovery label,
 .discovery input[type="text"],
 .discovery input[type="submit"] {
+
   display: block; /* Ändern Sie die Anzeige auf block */
   width: 200px; /* Breite auf 100% des verfügbaren Platzes minus den Rand */
   margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
@@ -91,10 +109,32 @@ a {
   margin-top: 10px;
   margin-bottom: 10px; /* Unteren Abstand hinzufügen */
   border: 2px solid var(--border-color); /* Einheitlicher Rand um jedes Element */
+=======
+  display: block;
+  width: 200px; 
+  margin-bottom: 10px; 
+}
+
+.discovery input[type="submit"] {
+  margin-top: 10px; 
+}
+
+.discovery__results {
+  list-style: none; 
+  padding: 10px; 
+}
+
+.discovery__results li {
+  color: var(--link-color); 
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  border: 2px solid var(--border-color); 
+
   width: 280px;
 }
 
 .discovery__wrapper {
+
   flex: 1;
   flex-wrap: wrap; /* Flexbox verwenden */
 }
@@ -105,6 +145,17 @@ a {
 
 .discovery__map {
   flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
+=======
+  display: flex; 
+}
+
+.discovery__taglist {
+  flex: 1; 
+}
+
+.discovery__map {
+  flex: 1; 
+
 }
 
 /* Grid styles (no changes required) */
@@ -169,10 +220,13 @@ a {
   background-color: var(--background-color);
   color: black;
   padding: 5px;
+
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+
+
 }
 
 /* Main container */
@@ -182,6 +236,7 @@ a {
   justify-content: space-between;
   margin: 5px;
 }
+
 
 /* Tagging styling */
 .tagging {
@@ -211,10 +266,41 @@ a {
   padding: 10px;
 }
 
+
+
+/* Tagging styling */
+.tagging {
+  flex: 1;
+  margin-right: 10px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+}
+
+/* Discovery styling */
+.discovery {
+  flex: 2;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--background-color);
+  color: white;
+  padding: 10px;
+}
+
+
 /* Media query for responsive design */
 @media (max-width: 850px) {
   .main {
       flex-direction: column;
   }
   
+
 }
+
+}
+
