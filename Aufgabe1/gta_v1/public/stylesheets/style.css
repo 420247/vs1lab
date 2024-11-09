@@ -15,13 +15,8 @@ html {
 * {
   margin: 0;
   padding: 0;
-
-  /* This approach prevents issues with 3rd party content-box components */
   box-sizing: inherit;
 }
-
-
-/* Variables (example: see declaration for "a" below) */
 
 :root {
   --link-color: #00B7FF;
@@ -30,9 +25,7 @@ html {
   --gray-color: #666;
 }
 
-
 /* HTML element styles */
-
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
@@ -44,25 +37,88 @@ a {
   color: var(--link-color);
 }
 
-/* ### TODO ### Styles for other HTML elements */
+/* Header styling */
+.header {
+  background-color: var(--background-color);
+  color: black;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .header__image {
-  max-width: 10%; 
-  height: auto; 
+  max-width: 100%;
+  width: 50px;
+  height: auto;
+  float: left;
+  margin-right: 10px;
+}
+
+.header__navigation {
+  margin-top: 10px;
+}
+
+/* Main container */
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 5px;
+}
+
+.main__tagging, .main__discovery {
+  flex: 1 1 45%; 
+  min-width: 300px; 
+}
+
+
+.tagging,
+.discovery {
+  width: 100%;
+  flex: 2;
+  padding: 5px;
+}
+
+/* Tagging section styling */
+.tagging {
+  max-width: 270px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 1px solid var(--border-color);
+  align-items: center;
 }
 
 .tagging label,
-.tagging input[type="text"] {
+.tagging input[type="text"],
+.tagging input[type="submit"] {
   display: block;
+  width: 200px;
   margin-bottom: 10px; 
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.tagging input[type="submit"] {
+  padding: 5px;
 }
 
 .tagging input[type="text"] {
   width: 200px;
+  padding: 5px;
 }
 
 .tagging fieldset {
   padding: 10px; 
+}
+
+/* Discovery section styling */
+.discovery {
+  border: 1px solid var(--border-color);
 }
 
 .discovery fieldset {
@@ -73,7 +129,8 @@ a {
 .discovery input[type="text"],
 .discovery input[type="submit"] {
   display: block;
-  width: 200px; 
+  width: 200px;
+  padding: 5px;
   margin-bottom: 10px; 
 }
 
@@ -87,27 +144,46 @@ a {
 }
 
 .discovery__results li {
-  color: var(--link-color); 
   margin-top: 10px;
   margin-bottom: 10px; 
   border: 2px solid var(--border-color); 
-  width: 280px;
+  width: 300px;
+  padding: 10px;
+  background-color: var(--background-color);
+  color: #0000FF;
 }
 
 .discovery__wrapper {
   display: flex; 
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.discovery__taglist,
+.discovery__map {
+  flex: 1;
 }
 
 .discovery__taglist {
-  flex: 1; 
+  width: 100%;
 }
 
 .discovery__map {
-  flex: 1; 
+  width: auto;
+  height: auto;
+  object-fit: fill;
+  max-width: 2000px; 
 }
 
-/* Grid styles (no changes required) */
+/* Footer styling */
+.footer {
+  background-color: var(--background-color);
+  color: black;
+  padding: 10px;
+}
 
+/* Grid styles */
 .row {
   width: 100%;
   display: flex;
@@ -163,49 +239,12 @@ a {
   width: calc(100% - 1rem);
 }
 
-/* Header styling */
-.header {
-  background-color: var(--background-color);
-  color: black;
-  padding: 5px;
-}
-
-/* Main container */
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 5px;
-}
-
-/* Tagging styling */
-.tagging {
-  flex: 1;
-  margin-right: 10px;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  padding: 10px;
-}
-
-/* Discovery styling */
-.discovery {
-  flex: 2;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  padding: 5px;
-}
-
-/* Footer styling */
-.footer {
-  background-color: var(--background-color);
-  color: white;
-  padding: 10px;
-}
-
-/* Media query for responsive design */
+/* Media query for screens 850px or smaller */
 @media (max-width: 850px) {
+  /* Stack main content vertically */
   .main {
       flex-direction: column;
   }
   
-}
+  /* Ensure tagging and discovery sections are full width */
+  
