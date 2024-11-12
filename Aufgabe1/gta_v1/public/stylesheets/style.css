@@ -46,8 +46,115 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
 
+.header__image {
+  max-width: 10%; 
+  height: auto; 
+}
+
+.tagging label,
+.tagging input[type="text"] {
+
+  display: block; /* Ändern Sie die Anzeige auf block */
+  margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
+}
+
+.tagging input[type="text"] {
+  width: 200px; /* Breite des Textfelds auf 100% des verfügbaren Platzes minus den Rand */
+}
+
+.tagging fieldset {
+  padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
+}
+
+.discovery fieldset {
+  padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
+  display: block;
+  margin-bottom: 10px; 
+}
+
+.tagging input[type="text"] {
+  width: 200px;
+}
+
+.tagging fieldset {
+  padding: 10px; 
+}
+
+.discovery fieldset {
+  padding: 10px;
+
+}
+
+.discovery label,
+.discovery input[type="text"],
+.discovery input[type="submit"] {
+
+  display: block; /* Ändern Sie die Anzeige auf block */
+  width: 200px; /* Breite auf 100% des verfügbaren Platzes minus den Rand */
+  margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
+}
+
+.discovery input[type="submit"] {
+  margin-top: 10px; /* Fügen Sie einen oberen Abstand hinzu, um den Submit-Button unterhalb der Textbox zu platzieren */
+}
+
+.discovery__results {
+  list-style: none; /* Listenstil entfernen */
+  padding: 10px; /* Innenabstand hinzufügen */
+}
+
+.discovery__results li {
+  color: var(--link-color); /* Textfarbe auf Linkfarbe setzen */
+  margin-top: 10px;
+  margin-bottom: 10px; /* Unteren Abstand hinzufügen */
+  border: 2px solid var(--border-color); /* Einheitlicher Rand um jedes Element */
+  display: block;
+  width: 200px; 
+  margin-bottom: 10px; 
+}
+
+.discovery input[type="submit"] {
+  margin-top: 10px; 
+}
+
+.discovery__results {
+  list-style: none; 
+  padding: 10px; 
+}
+
+.discovery__results li {
+  color: var(--link-color); 
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  border: 2px solid var(--border-color); 
+
+  width: 280px;
+}
+
+.discovery__wrapper {
+
+  flex: 1;
+  flex-wrap: wrap; /* Flexbox verwenden */
+}
+
+.discovery__taglist {
+  flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
+}
+
+.discovery__map {
+  flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
+  display: flex; 
+}
+
+.discovery__taglist {
+  flex: 1; 
+}
+
+.discovery__map {
+  flex: 1; 
+
+}
 
 /* Grid styles (no changes required) */
 
@@ -110,6 +217,18 @@ a {
 .header {
   padding: 50px 0;
   background-color: var(--border-color);
+
+  background-color: var(--background-color);
+  color: black;
+  padding: 5px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+
+
 }
 
 .header img{
@@ -125,6 +244,7 @@ a {
   max-width: 2000px;
   height: 100%;
 }
+
 
 
 .main{
@@ -222,6 +342,32 @@ a {
 }
 
 .main .discovery .discovery__wrapper .discovery__taglist .discovery__results li{
+
+/* Tagging styling */
+.tagging {
+  flex: 1;
+  margin-right: 10px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+}
+
+/* Discovery styling */
+.discovery {
+  flex: 2;
+  margin-right: 10px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  
+}
+
+
+
+/* Footer styling */
+.footer {
+  background-color: var(--background-color);
+  color: white;
   padding: 10px;
   border: solid 1px var(--border-color);
   color: var(--link-color);
@@ -233,6 +379,7 @@ a {
 .main .discovery .discovery__wrapper .discovery__map img{
   max-width: 100%; 
 }
+
 
 .main .discovery .discovery__wrapper .discovery__map span{
   display: block;
@@ -277,3 +424,43 @@ min-width: 100px;
     display: block;
   }
 }
+
+
+
+/* Tagging styling */
+.tagging {
+  flex: 1;
+  margin-right: 10px;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+}
+
+/* Discovery styling */
+.discovery {
+  flex: 2;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  padding: 5px;
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--background-color);
+  color: white;
+  padding: 10px;
+}
+
+
+/* Media query for responsive design */
+@media (max-width: 850px) {
+  .main {
+      flex-direction: column;
+  }
+  
+
+}
+
+}
+
+
