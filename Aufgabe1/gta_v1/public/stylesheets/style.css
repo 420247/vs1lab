@@ -68,7 +68,6 @@ a {
 
 .discovery fieldset {
   padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
-=======
   display: block;
   margin-bottom: 10px; 
 }
@@ -109,7 +108,6 @@ a {
   margin-top: 10px;
   margin-bottom: 10px; /* Unteren Abstand hinzufügen */
   border: 2px solid var(--border-color); /* Einheitlicher Rand um jedes Element */
-=======
   display: block;
   width: 200px; 
   margin-bottom: 10px; 
@@ -146,7 +144,7 @@ a {
 
 .discovery__map {
   flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
-=======
+
   display: flex; 
 }
 
@@ -220,22 +218,13 @@ a {
 .header {
   background-color: var(--background-color);
   color: black;
-<<<<<<< HEAD
   padding: 10px;
-=======
   padding: 5px;
-
->>>>>>> refs/remotes/origin/changesArtur
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-<<<<<<< HEAD
   flex: 1;
-=======
-
-
->>>>>>> refs/remotes/origin/changesArtur
 }
 
 /* Main container */
@@ -322,10 +311,4 @@ a {
   }
   
 
-}
 
-<<<<<<< HEAD
-=======
-}
-
->>>>>>> refs/remotes/origin/changesArtur
