@@ -255,13 +255,20 @@ a {
   font-weight: bold;
 }
 
+.discovery__search input{
+min-width: 100px;
+}
+
 @media screen and (max-width: 950px) {
+
   .main {
       flex-direction: column;
+     
   }
 
   .header .header-elements{
     flex-direction: column;
+    
   }
 }
 
