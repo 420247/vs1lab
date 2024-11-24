@@ -134,9 +134,7 @@ function updateLocation() {
         mapManager.updateMarkers(helper.latitude, helper.longitude);
 
         const mapImage = document.querySelector('#mapView');
-        const mapDescription = mapImage?.nextElementSibling;
         if (mapImage) mapImage.remove();
-        if (mapDescription) mapDescription.remove();
     });
 }
 
