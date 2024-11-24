@@ -130,7 +130,7 @@ function updateLocation() {
         if (discoveryLongitude) discoveryLongitude.value = helper.longitude;
 
         const mapManager = new MapManager();
-        mapManager.initMap(helper.latitude, helper.longitude);
+        mapManager.initMap(helper.latitude, helper.longitude, 18);
         mapManager.updateMarkers(helper.latitude, helper.longitude);
 
         const mapImage = document.querySelector('#mapView');
@@ -142,6 +142,6 @@ function updateLocation() {
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+    //alert("Please change the script 'geotagging.js'");
     updateLocation();
 });
