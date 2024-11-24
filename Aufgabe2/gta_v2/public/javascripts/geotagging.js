@@ -135,6 +135,7 @@ function updateLocation() {
 
         const mapImage = document.querySelector('#mapView');
         if (mapImage) mapImage.remove();
+        document.getElementById('hidSpan').style.display = 'none';
     });
 }
 
