@@ -108,7 +108,10 @@ a {
 
 
 .header {
-  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
   background-color: var(--border-color);
 }
 
@@ -129,7 +132,6 @@ a {
 
 .main{
   display: flex;
-  flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
   max-width: 2000px;
@@ -173,7 +175,9 @@ a {
   border: solid 1px var(--border-color);
 }
 
-.main .discovery {
+
+.main .discovery{
+  width: 100%;
   flex: 1 1 45%;
 }
 
@@ -271,4 +275,5 @@ a {
   .main .discovery .discovery__wrapper{
     display: block;
   }
+
 }
