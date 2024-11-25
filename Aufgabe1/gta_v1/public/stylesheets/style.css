@@ -289,6 +289,14 @@ a {
   color: white;
   padding: 10px;
 }
+#map { 
+  height: 500px;
+  
+}
+.discovery__map
+{
+  flex-wrap:  wrap;
+}
 
 
 /* Media query for responsive design */
