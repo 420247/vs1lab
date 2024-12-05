@@ -270,6 +270,10 @@ a {
   .header .header-elements{
     flex-direction: column;
   }
+
+  .main .tagging {
+    flex: 1;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -277,4 +281,7 @@ a {
     display: block;
   }
 
+  .main .tagging {
+    flex: 1;
+  }
 }
