@@ -11,7 +11,19 @@
  */
 class GeoTag {
 
-    // TODO: ... your code here ...
+     /**
+     * Constructor to create a GeoTag object.
+     * @param {string} name - The name of the GeoTag.
+     * @param {number} latitude - The latitude of the GeoTag.
+     * @param {number} longitude - The longitude of the GeoTag.
+     * @param {string} hashtag - The hashtag associated with the GeoTag.
+     */
+     constructor(name, latitude, longitude, hashtag) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.hashtag = hashtag;
+    }
     
 }
 
