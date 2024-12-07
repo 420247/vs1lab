@@ -46,7 +46,7 @@ inMemoryStore.loadExamples();
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
 
-  const { latitude, longitude } = req.query;
+  const {latitude, longitude} = req.query;
 
   res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude: latitude, longitude: longitude })
 });
