@@ -24,6 +24,37 @@ class GeoTag {
         this.longitude = longitude;
         this.hashtag = hashtag;
     }
+    getLatitude() {
+        return this.latitude;
+    }
+
+    setLatitude(latitude) {
+        this.latitude = latitude;
+    }
+
+    getLongitude() {
+        return this.longitude;
+    }
+
+    setLongitude(longitude) {
+        this.longitude = longitude;
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    setName(name) {
+        this.name = name;
+    }
+
+    getHashtag() {
+        return this.hashtag;
+    }
+
+    setHashtag(hashtag) {
+        this.hashtag = hashtag;
+    }
     
 }
 

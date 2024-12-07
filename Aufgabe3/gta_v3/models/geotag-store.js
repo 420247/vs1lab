@@ -23,44 +23,98 @@
  * - The proximity constrained is the same as for 'getNearbyGeoTags'.
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
-class GeoTagStore {
+const GeoTagExamples = require('./geotag-examples.js');
+const GeoTag = require("./geotag");
+
+class InMemoryGeoTagStore{
+    #geoTagsArray;
+
     constructor() {
-        this._geoTags = [];
+        this.#geoTagsArray = [];
     }
 
     addGeoTag(geoTag) {
-        this._geoTags.push(geoTag);
+        this.#geoTagsArray.push(geoTag);
     }
 
     removeGeoTag(name) {
-        this._geoTags = this._geoTags.filter(tag => tag.name !== name);
+        this.#geoTagsArray = this.geoTagsArray.filter(tag => tag.name !== name);
     }
 
-    getNearbyGeoTags(lat, lon, radius) {
-        return this._geoTags.filter(tag => {
-            const distance = this._computeDistance(lat, lon, tag.latitude, tag.longitude);
-            return distance <= radius;
+    getNearbyGeoTags(latitude, longitude, radius = 10.0) {
+
+        let foundGeoTags = [];
+
+        for (let i = 0; i < this.#geoTagsArray.length; i++) {
+            const currentTag = this.#geoTagsArray[i];
+
+            const distance = this.calcDistance(latitude, longitude, currentTag.getLatitude(), currentTag.getLongitude());
+
+            if (distance <= radius) {
+                foundGeoTags.push(this.#geoTagsArray[i]);
+            }
+        }
+
+        return foundGeoTags;
+    }
+
+    // for each, if (dist <= r && (nameMatch || hashtagMatch)) -> in array
+    searchNearbyGeoTags(latitude, longitude, radius = 10.0, keyword) {
+        let foundGeoTags = [];
+    
+        for (let i = 0; i < this.#geoTagsArray.length; i++) {
+            const currentTag = this.#geoTagsArray[i];
+    
+            const distance = this.calcDistance(latitude, longitude, currentTag.getLatitude(), currentTag.getLongitude());
+    
+            if (distance <= radius) {
+                const nameMatch = currentTag.name.toLowerCase().includes(keyword.toLowerCase());
+                const hashtagMatch = currentTag.hashtags.some(hashtag => hashtag.toLowerCase().includes(keyword.toLowerCase()));
+    
+                if (nameMatch || hashtagMatch) {
+                    foundGeoTags.push(currentTag);
+                }
+            }
+        }
+    
+        return foundGeoTags;
+    }
+    
+
+    /*Haversine Formel zur Berechnung des kürzesten Weges
+    https://de.acervolima.com/haversine-formel-zum-ermitteln-des-abstands-zwischen-zwei-punkten-auf-einer-kugel/
+    */
+    calcDistance(lat1, lon1, lat2, lon2) {
+        let dLat = (lat2 - lat1) * Math.PI / 180.0;
+        let dLon = (lon2 - lon1) * Math.PI / 180.0;
+        lat1 = (lat1) * Math.PI / 180.0;
+        lat2 = (lat2) * Math.PI / 180.0;
+        let a = Math.pow(Math.sin(dLat / 2), 2) +
+                Math.pow(Math.sin(dLon / 2), 2) *
+                Math.cos(lat1) *
+                Math.cos(lat2);
+        let rad = 6371;
+        let c = 2 * Math.asin(Math.sqrt(a));
+        return rad * c;
+    }
+
+    getAllGeoTags() {
+        let allGeoTags = [];
+        for (let i = 0; i < this.#geoTagsArray.length; i++) {
+            allGeoTags.push(this.#geoTagsArray[i]);
+        }
+        return allGeoTags;
+    }
+
+
+    loadExamples() {
+
+        const tagList = GeoTagExamples.tagList;
+        tagList.forEach(tag => {
+            this.addGeoTag(new GeoTag(tag[0], tag[1], tag[2], tag[3]));
         });
-    }
 
-    searchNearbyGeoTags(lat, lon, radius, keyword) {
-        const tags = this.getNearbyGeoTags(lat, lon, radius);
-        return tags.filter(tag =>
-            tag.name.toLowerCase().includes(keyword.toLowerCase()) ||
-            tag.hashtag.toLowerCase().includes(keyword.toLowerCase())
-        );
-    }
-
-    _computeDistance(lat1, lon1, lat2, lon2) {
-        const R = 6371; // Radius of Earth in km
-        const dLat = ((lat2 - lat1) * Math.PI) / 180;
-        const dLon = ((lon2 - lon1) * Math.PI) / 180;
-        const a = Math.sin(dLat / 2) ** 2 +
-                  Math.cos((lat1 * Math.PI) / 180) * Math.cos((lat2 * Math.PI) / 180) * Math.sin(dLon / 2) ** 2;
-        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 }
-module.exports = GeoTagStore;
 
-
-
+module.exports = InMemoryGeoTagStore
