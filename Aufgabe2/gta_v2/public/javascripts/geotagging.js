@@ -104,7 +104,7 @@ class MapManager {
             .bindPopup("Your Location")
             .addTo(this.#markers);
         for (const tag of tags) {
-            L.marker([tag.location.latitude,tag.location.longitude])
+            L.marker([tag.latitude,tag.longitude])
                 .bindPopup(tag.name)
                 .addTo(this.#markers);  
         }
@@ -116,9 +116,45 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
-// ... your code here ...
+function updateLocation() {
+    LocationHelper.findLocation((helper) => {
+        const latitude = helper.latitude;
+        const longitude = helper.longitude;
+
+        // Koordinaten in die Formulare eintragen
+        const latitudeFields = document.querySelectorAll("input[name='latitude']");
+        const longitudeFields = document.querySelectorAll("input[name='longitude']");
+
+        latitudeFields.forEach((field) => {
+            field.value = latitude;
+        });
+
+        longitudeFields.forEach((field) => {
+            field.value = longitude;
+        });
+
+        // Karte initialisieren
+        const mapManager = new MapManager();
+        mapManager.initMap(latitude, longitude);
+
+        // Marker aktualisieren
+        mapManager.updateMarkers(latitude, longitude);
+
+        // Platzhalter-Elemente (img und p) entfernen
+        const imgElement = document.querySelector("img");
+        const pElement = document.querySelector("p");
+
+        if (imgElement) imgElement.remove();
+        if (pElement) pElement.remove();
+
+        console.log("Karte erfolgreich geladen und Marker gesetzt:", { latitude, longitude });
+    });
+}
+
+
+
 
 // Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
-});
+document.addEventListener("DOMContentLoaded", 
+    updateLocation
+);

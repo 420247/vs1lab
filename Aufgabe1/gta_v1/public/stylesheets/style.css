@@ -1,3 +1,4 @@
+
 /*
   File origin: VS1LAB A1b  
 
@@ -46,116 +47,8 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-.header__image {
-  max-width: 5%; 
-  height: auto; 
-}
+/* ... your code here ... */
 
-.tagging label,
-.tagging input[type="text"] {
-
-  display: block; /* Ändern Sie die Anzeige auf block */
-  margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
-}
-
-.tagging input[type="text"] {
-  width: 200px; /* Breite des Textfelds auf 100% des verfügbaren Platzes minus den Rand */
-}
-
-.tagging fieldset {
-  padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
-}
-
-.discovery fieldset {
-  padding: 10px; /* Erhöhen Sie das Padding des Rahmens */
-  display: block;
-  margin-bottom: 10px; 
-}
-
-.tagging input[type="text"] {
-  width: 200px;
-}
-
-.tagging fieldset {
-  padding: 10px; 
-}
-
-.discovery fieldset {
-  padding: 10px;
-
-}
-
-.discovery label,
-.discovery input[type="text"],
-.discovery input[type="submit"] {
-
-  display: block; /* Ändern Sie die Anzeige auf block */
-  width: 200px; /* Breite auf 100% des verfügbaren Platzes minus den Rand */
-  margin-bottom: 10px; /* Fügen Sie einen Abstand zwischen den Elementen hinzu */
-}
-
-.discovery input[type="submit"] {
-  margin-top: 10px; /* Fügen Sie einen oberen Abstand hinzu, um den Submit-Button unterhalb der Textbox zu platzieren */
-}
-
-.discovery__results {
-  list-style: none; /* Listenstil entfernen */
-  padding: 10px; /* Innenabstand hinzufügen */
-}
-
-.discovery__results li {
-  color: var(--link-color); /* Textfarbe auf Linkfarbe setzen */
-  margin-top: 10px;
-  margin-bottom: 10px; /* Unteren Abstand hinzufügen */
-  border: 2px solid var(--border-color); /* Einheitlicher Rand um jedes Element */
-  display: block;
-  width: 200px; 
-  margin-bottom: 10px; 
-}
-
-.discovery input[type="submit"] {
-  margin-top: 10px; 
-}
-
-.discovery__results {
-  list-style: none; 
-  padding: 10px; 
-}
-
-.discovery__results li {
-  color: var(--link-color); 
-  margin-top: 10px;
-  margin-bottom: 10px; 
-  border: 2px solid var(--border-color); 
-
-  width: 280px;
-}
-
-.discovery__wrapper {
-
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap; /* Flexbox verwenden */
-}
-
-.discovery__taglist {
-  flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
-}
-
-.discovery__map {
-  flex: 1; /* Flex-Element auf 50% des verfügbaren Platzes setzen */
-
-  display: flex; 
-}
-
-.discovery__taglist {
-  flex: 1; 
-}
-
-.discovery__map {
-  flex: 1; 
-
-}
 
 /* Grid styles (no changes required) */
 
@@ -214,109 +107,181 @@ a {
   width: calc(100% - 1rem);
 }
 
-/* Header styling */
+
 .header {
-  background-color: var(--background-color);
-  color: black;
-  padding: 10px;
-  padding: 5px;
   display: flex;
-  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: var(--border-color);
+}
+
+.header img{
+  height: 50px;
+}
+
+.header .header-elements{
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  flex: 1;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 2000px;
+  height: 100%;
 }
 
-/* Main container */
-.main {
+
+.main{
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 5px;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 2000px;
+  padding: 60px 0;
+  gap: 25px;
+}
+
+.main .tagging {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.main .tagging h2{
+  padding-bottom: 15px;
+}
+
+.main .tagging form fieldset{
+  padding: 20px;
+  border: solid 1px var(--border-color);
+}
+
+.main .tagging form fieldset legend{
+  font-weight: bold;
+}
+
+.main .tagging form fieldset input{
+  display: block;
+  padding: 7px 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.main .tagging form fieldset label{
+  color: var(--gray-color);
+}
+
+.main .tagging form fieldset #tagbutton{
+  width: 100%;
+  margin: 0;
+  font-weight: bold;
+  border: solid 1px var(--border-color);
 }
 
 
-/* Tagging styling */
-.tagging {
-  flex: 1;
-  margin-right: 10px;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
+.main .discovery{
+  width: 100%;
+  flex: 1 1 45%;
+}
+
+.main .discovery h2{
+  padding-bottom: 15px;
+}
+
+.main .discovery form fieldset {
+  padding: 15px;
+  border: solid 1px var(--border-color);
+}
+
+.main .discovery form fieldset label{
+  color: var(--gray-color);
+}
+
+.main .discovery form fieldset input{
+  display: block;
+  padding: 7px 10px;
+  width: 30%;
+}
+
+.main .discovery form fieldset #searchterm{
+  margin: 15px 0;
+}
+
+.main .discovery form fieldset legend{
+  font-weight: bold;
+}
+
+.main .discovery form fieldset #searchbutton{
+  font-weight: bold;
+  border: solid 1px var(--border-color);
+}
+
+.main .discovery .discovery__wrapper{
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  gap: 25px;
+  padding-top: 25px;
+}
+
+.main .discovery .discovery__wrapper .discovery__taglist .discovery__results{
+  list-style: none;
+}
+
+.main .discovery .discovery__wrapper .discovery__taglist .discovery__results li{
   padding: 10px;
+  border: solid 1px var(--border-color);
+  color: var(--link-color);
+  font-weight: bold;
+  background: var(--background-color);
+  margin-bottom: 15px;
 }
 
-/* Discovery styling */
-.discovery {
-  flex: 2;
-  margin-right: 10px;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  padding: 5px;
-  
+.main .discovery .discovery__wrapper .discovery__map img{
+  max-width: 100%; 
 }
 
-
-
-/* Footer styling */
-.footer {
-  background-color: var(--background-color);
-  color: white;
-  padding: 10px;
+.main .discovery .discovery__wrapper .discovery__map span{
+  display: block;
+  color: var(--gray-color);
 }
 
-
-
-/* Tagging styling */
-.tagging {
-  flex: 1;
-  margin-right: 10px;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  padding: 10px;
-}
-
-/* Discovery styling */
-.discovery {
-  flex: 2;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  padding: 5px;
-}
-
-/* Footer styling */
-.footer {
-  background-color: var(--background-color);
-  color: white;
-  padding: 10px;
-}
 #map { 
   height: 500px;
-  
-}
-.discovery__map
-{
-  flex-wrap:  wrap;
+  width: 500px;
 }
 
-
-/* Media query for responsive design */
-@media (max-width: 850px) {
+.footer{
+  height: 100px;
+  background-color: var(--border-color);
+  display: flex;
+  align-items: center;
   
+}
+
+.footer span{
+  width: 90%;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 950px) {
+  .tagging{
+    width: 100%;
+  }
+  .row{
+    width: 100%;
+  }
   .main {
       flex-direction: column;
-      min-width: 100vh;
-  }
-  
-  .header{
-    min-width: 100vh;
   }
 
-  .footer{
-    min-width: 100vh;
+  .header .header-elements{
+    flex-direction: column;
   }
-  
+}
 
+@media screen and (max-width: 700px) {
+  .main .discovery .discovery__wrapper{
+    display: block;
   }
-  
 
-
+}
