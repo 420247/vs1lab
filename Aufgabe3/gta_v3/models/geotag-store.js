@@ -69,7 +69,8 @@ class InMemoryGeoTagStore{
     
             if (distance <= radius) {
                 const nameMatch = currentTag.name.toLowerCase().includes(keyword.toLowerCase());
-                const hashtagMatch = currentTag.hashtags.some(hashtag => hashtag.toLowerCase().includes(keyword.toLowerCase()));
+                const hashtagMatch = Array.isArray(currentTag.hashtags) && 
+                currentTag.hashtags.some(hashtag => hashtag.toLowerCase().includes(keyword.toLowerCase()));
     
                 if (nameMatch || hashtagMatch) {
                     foundGeoTags.push(currentTag);
