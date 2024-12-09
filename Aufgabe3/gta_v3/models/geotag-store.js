@@ -113,6 +113,7 @@ class InMemoryGeoTagStore{
         const tagList = GeoTagExamples.tagList;
         tagList.forEach(tag => {
             this.addGeoTag(new GeoTag(tag[0], tag[1], tag[2], tag[3]));
+            
         });
 
     }

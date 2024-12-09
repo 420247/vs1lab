@@ -59,7 +59,8 @@ class MapManager {
                 .addTo(this.#markers);
             for (const tag of tags) {
                 L.marker([tag.latitude, tag.longitude], { icon: this.#defaultIcon })
-                    .bindPopup(tag.locationName)
+                    .bindPopup(tag.name)
+                    
                     .addTo(this.#markers);  
             }
         } catch (error) {
