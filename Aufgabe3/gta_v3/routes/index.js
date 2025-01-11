@@ -74,7 +74,6 @@ router.post('/tagging', (req, res) => {
   inMemoryStore.addGeoTag(newTag); 
   
   const taglist = inMemoryStore.getAllGeoTags();
-
   res.redirect('/');
   res.render('index', { taglist: taglist , latitude: latitude, longitude: longitude });
   
