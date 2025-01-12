@@ -16,14 +16,24 @@ class GeoTag {
      * @param {string} hashtag - The hashtag of the GeoTag.
      * @param {number} latitude - The latitude of the GeoTag.
      * @param {number} longitude - The longitude of the GeoTag.
+     * @param {number} id - The id of the GeoTag
      */
     constructor(name ,latitude, longitude, hashtag){
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.hashtag = hashtag;
+        this.id = null;
     }
 
+    setID(id) {
+        this.id = id;
+    }
+
+    getID() {
+        return this.id;
+    }
+    
     getLatitude() {
         return this.latitude;
     }
