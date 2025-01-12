@@ -71,13 +71,13 @@
                     <ul class="discovery__results" id="discoveryResults">
                         <% if (taglist !==undefined) taglist.forEach(function(gtag) { %>
                             <li>
-                                <%= gtag.name %> (<%= gtag.latitude %>, <%= gtag.longitude %>) <%= gtag.hashtag %>
+                                <%= gtag.locationName %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %>
                             </li>
                             <% }); %>
                     </ul>
-                    <div class="discovery__pagination" >
+                   <div class="discovery__pagination" >
                         <button id="prevPage">&lt;</button>
-                        <span id="pageInfo"><%# currentPage %>/<%# totalPages %> (<%# totalTags %>)</span>
+                        <span id="pageInfo"><%# currentPage %> / <%# totalPages %></span>
                         <button id="nextPage">&gt;</button>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="discovery__map">
                     <div id="map" data-tags='<%= JSON.stringify(taglist) %>'>
                         <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
-                        <span id="hidSpan">Result map</span>
+                        <span>Result map</span>
                     </div>
                 </div>
             </div>

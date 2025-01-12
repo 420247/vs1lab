@@ -11,10 +11,15 @@
  * TODO: populate your InMemoryGeoTagStore with these tags
  * 
  */
+
+
+
 class GeoTagExamples {
     /**
      * Provides some geoTag data
      */
+
+
     static get tagList() {
         return [
             ['Castle', 49.013790, 8.404435, '#sight'],
@@ -30,6 +35,9 @@ class GeoTagExamples {
             ['Building K', 49.013190, 8.392090, '#campus'],
         ];
     }
+
+    
 }
+
 
 module.exports = GeoTagExamples;

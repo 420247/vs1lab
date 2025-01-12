@@ -1,5 +1,7 @@
 // File origin: VS1LAB A2
 
+//const { response } = require("express");
+
 /* eslint-disable no-unused-vars */
 
 // This script is executed when the browser loads index.html.
@@ -10,45 +12,43 @@
 console.log("The geoTagging script is going to start...");
 
 
+
+const mapImage = document.getElementById('mapView');
+const latitudeView = document.getElementById('latitude');
+const longitudeView = document.getElementById('longitude');
+const latitudeDiscovery = document.getElementById('latitudeDiscovery');
+const longitudeDiscovery = document.getElementById('longitudeDiscovery');
+
+const mapDiv = document.getElementById('map');
+const taglist_json = mapDiv.getAttribute('data-tags');
+const tags = JSON.parse(taglist_json);
+
+//dont know why VS wants to do mapManager(), but DO NOT change
+var mapManager = new MapManager();
+
 function updateLocation() {
-        
-    const mapImage = document.getElementById('mapView');
-    const latitudeView = document.getElementById('latitude');
-    const longitudeView = document.getElementById('longitude');
-    const latitudeDiscovery = document.getElementById('latitudeDiscovery');
-    const longitudeDiscovery = document.getElementById('longitudeDiscovery');
 
-    const mapDiv = document.getElementById('map');
-    const taglist_json = mapDiv.getAttribute('data-tags');
-    const tags = JSON.parse(taglist_json);
-
-    //dont know why VS wants to do mapManager(), but DO NOT change
-    var mapManager = new MapManager();
-    
     if (latitudeView.value == "" || longitudeView.value == "" || latitudeDiscovery.value == "" || longitudeDiscovery.value == "") {
-        
+
         LocationHelper.findLocation((location) => {
-        
+
             latitudeView.value = location.latitude;
             longitudeView.value = location.longitude;
             latitudeDiscovery.value = location.latitude;
             longitudeDiscovery.value = location.longitude;
 
-            console.log('location latitude:' +location.latitude);
-            console.log('location longitude:' +location.longitude);
-
             mapImage.parentNode.removeChild(mapView);
 
             mapManager.initMap(location.latitude, location.longitude);
             mapManager.updateMarkers(location.latitude, location.longitude, tags);
-        
+
         });
-    }else{
+    } else {
         mapManager.initMap(latitudeView.value, longitudeView.value);
-        mapManager.updateMarkers(latitudeView.value, longitudeView.value, tags);   
+        mapManager.updateMarkers(latitudeView.value, longitudeView.value, tags);
     }
 
-    
+
 }
 
 async function handleTaggingFormSubmit(event) {
@@ -88,7 +88,7 @@ async function handleTaggingFormSubmit(event) {
 }
 
 async function handleDiscoveryFormSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default form submission
 
     const form = event.target;
     const formData = new FormData(form);
@@ -124,13 +124,16 @@ async function handleDiscoveryFormSubmit(event) {
 
             mapManager.updateMarkers(latitude, longitude, data);
         })
+
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
-// Wait for the page to fully load its DOM content, then call updateLocation
-document.addEventListener("DOMContentLoaded", () => {
-    updateLocation();
+    document.addEventListener("DOMContentLoaded", () => {
+        updateLocation();
 
-    const tagForm = document.getElementById('tag-form');
+        const tagForm = document.getElementById('tag-form');
         if (tagForm) {
             tagForm.addEventListener('submit', handleTaggingFormSubmit);
         }
@@ -139,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (filterForm) {
             filterForm.addEventListener('submit', handleDiscoveryFormSubmit);
         }
-});
+    });
 
 let currentPage = 1;
 let totalTags;
@@ -167,7 +170,6 @@ async function updateCurrentPage(newPage) {
     });
 
     document.getElementById('pageInfo').textContent = `${currentPage}/${totalPages} (${totalTags})`;
-
 }
 
 const prevButton = document.getElementById('prevPage');
@@ -185,3 +187,5 @@ nextButton.addEventListener('click', async () => {
 });
 
 updateCurrentPage(currentPage);
+
+

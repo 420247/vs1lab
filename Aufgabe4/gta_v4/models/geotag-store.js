@@ -5,6 +5,9 @@
  * Complete all TODOs in the code documentation.
  */
 
+const GeoTagExamples = require("./geotag-examples");
+const GeoTag = require("./geotag");
+
 /**
  * A class for in-memory-storage of geotags
  * 
@@ -23,10 +26,7 @@
  * - The proximity constrained is the same as for 'getNearbyGeoTags'.
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
-const GeoTagExamples = require('./geotag-examples.js');
-const GeoTag = require("./geotag");
-
-class InMemoryGeoTagStore{
+class InMemoryGeoTagStore {
     #geoTagsArray;
 
     constructor() {
@@ -34,13 +34,17 @@ class InMemoryGeoTagStore{
         this.iDs = 0;
     }
 
+    getById(id){
+        return this.#geoTagsArray.find(tag => tag.id == id);
+    }
+
     addGeoTag(geoTag) {
-        geoTag.setID(this.iDs++);
+        geoTag.id = this.iDs++;
         this.#geoTagsArray.push(geoTag);
     }
 
-    removeGeoTag(name) {
-        this.#geoTagsArray = this.geoTagsArray.filter(tag => tag.name !== name);
+    removeGeoTag(locationName) {
+        this.#geoTagsArray = this.#geoTagsArray.filter(tag => tag.locationName !== locationName);
     }
 
     getNearbyGeoTags(latitude, longitude, radius = 10.0) {
@@ -56,37 +60,29 @@ class InMemoryGeoTagStore{
                 foundGeoTags.push(this.#geoTagsArray[i]);
             }
         }
-
+        
         return foundGeoTags;
     }
 
-    // for each, if (dist <= r && (nameMatch || hashtagMatch)) -> in array
-    searchNearbyGeoTags(latitude, longitude, radius = 10.0, keyword) {
+    searchNearbyGeoTags(latitude, longitude, radius, searchterm) {
+
+        let nearbyGeoTags = this.getNearbyGeoTags(latitude, longitude, radius);
+
         let foundGeoTags = [];
-    
-        for (let i = 0; i < this.#geoTagsArray.length; i++) {
-            const currentTag = this.#geoTagsArray[i];
-    
-            const distance = this.calcDistance(latitude, longitude, currentTag.getLatitude(), currentTag.getLongitude());
-    
-            if (distance <= radius) {
-                const nameMatch = currentTag.name.toLowerCase().includes(keyword.toLowerCase());
-                const hashtagMatch = Array.isArray(currentTag.hashtags) && 
-                currentTag.hashtags.some(hashtag => hashtag.toLowerCase().includes(keyword.toLowerCase()));
-    
-                if (nameMatch || hashtagMatch) {
-                    foundGeoTags.push(currentTag);
-                }
+
+        for (let i = 0; i < nearbyGeoTags.length; i++) {
+            const name = nearbyGeoTags[i].getLocationName();
+            const hashtag = nearbyGeoTags[i].getHashtag();
+
+            if (name !== undefined && name.includes(searchterm) ||
+                hashtag !== undefined && hashtag.includes(searchterm)) {
+                foundGeoTags.push(nearbyGeoTags[i]);
             }
         }
-    
+
         return foundGeoTags;
     }
-    
 
-    /*Haversine Formel zur Berechnung des kürzesten Weges
-    https://de.acervolima.com/haversine-formel-zum-ermitteln-des-abstands-zwischen-zwei-punkten-auf-einer-kugel/
-    */
     calcDistance(lat1, lon1, lat2, lon2) {
         let dLat = (lat2 - lat1) * Math.PI / 180.0;
         let dLon = (lon2 - lon1) * Math.PI / 180.0;
@@ -123,13 +119,7 @@ class InMemoryGeoTagStore{
         const tagList = GeoTagExamples.tagList;
         tagList.forEach(tag => {
             this.addGeoTag(new GeoTag(tag[0], tag[1], tag[2], tag[3]));
-            
         });
-
-    }
-
-    getById(id){
-        return this.#geoTagsArray.find(tag => tag.id == id);     
     }
 }
 

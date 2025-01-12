@@ -106,12 +106,13 @@ a {
   width: calc(100% - 1rem);
 }
 
+#map { 
+  height: 500px;
+  width: 550px;
+}
 
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
+  padding: 50px 0;
   background-color: var(--border-color);
 }
 
@@ -178,6 +179,9 @@ a {
 
 .main .discovery{
   width: 100%;
+  width: 100%;
+  flex: 1 1 45%;
+  width: 100%;  
   flex: 1 1 45%;
 }
 
@@ -255,10 +259,7 @@ a {
   padding: 0 10px;
 }
 
-#map { 
-  height: 500px;
-  width: 500px;
-}
+
 
 .footer{
   height: 100px;
@@ -283,10 +284,9 @@ a {
     flex-direction: column;
   }
 
-  .main .tagging {
-    width: 100%;
-    flex: none;
-    max-width: 100%;
+  #map { 
+    height: 500px;
+    
   }
 
   #map {
@@ -294,7 +294,7 @@ a {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .main .discovery .discovery__wrapper{
     display: block;
   }

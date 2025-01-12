@@ -25,14 +25,10 @@ const GeoTag = require('../models/geotag');
  * It provides an in-memory store for geotag objects.
  */
 // eslint-disable-next-line no-unused-vars
-const GeoTagStore = require('../models/geotag-store');
-
-// App routes (A3)
-
-const inMemoryGeoTagStore  = require('../models/geotag-store');
+const inMemoryGeoTagStore = require('../models/geotag-store');
 const inMemoryStore = new inMemoryGeoTagStore();
 
-inMemoryStore.loadExamples(); 
+inMemoryStore.loadExamples();
 
 /**
  * Route '/' for HTTP 'GET' requests.
@@ -44,20 +40,16 @@ inMemoryStore.loadExamples();
  */
 
 // TODO: extend the following route example if necessary
-/*router.get('/', (req, res) => {
+router.get('/', (req, res) => {
 
-  const {latitude, longitude} = req.query;
+  const { latitude, longitude } = req.query;
 
   res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude: latitude, longitude: longitude })
-}); */
-
-//Pagination
+});
 
 router.get('/', (req, res) => {
 
-  const {latitude, longitude} = req.query;
-  const page = 1;
-  const limit = 5;
+  const { latitude, longitude, page = 1, limit = 5 } = req.query;
   const allTags = inMemoryStore.getAllGeoTags();
   const totalTags = allTags.length;
   const paginatedTags = allTags.slice((page - 1) * limit, page * limit);
@@ -112,12 +104,12 @@ router.post('/tagging', (req, res) => {
 
   const newTag = new GeoTag(name, latitude, longitude, hashtag);
 
-  inMemoryStore.addGeoTag(newTag); 
-  
+  inMemoryStore.addGeoTag(newTag);
+
   const taglist = inMemoryStore.getAllGeoTags();
+
   res.redirect('/');
-  res.render('index', { taglist: taglist , latitude: latitude, longitude: longitude });
-  
+  res.render('index', { taglist: taglist, latitude: latitude, longitude: longitude });
 });
 
 /**
@@ -141,8 +133,9 @@ router.post('/discovery', (req, res) => {
 
   const GeoTags = inMemoryStore.searchNearbyGeoTags(latitudeDiscovery, longitudeDiscovery, 100000, searchterm);
 
-  res.render('index', { taglist: GeoTags, latitude: latitudeDiscovery, longitude: longitudeDiscovery  });
+  res.render('index', { taglist: GeoTags, latitude: latitudeDiscovery, longitude: longitudeDiscovery });
 });
+
 
 // API routes (A4)
 
@@ -151,7 +144,7 @@ router.post('/discovery', (req, res) => {
  * (http://expressjs.com/de/4x/api.html#app.get.method)
  *
  * Requests contain the fields of the Discovery form as query.
- * (http://expressjs.com/de/4x/api.html#req.query)
+ * (http://expressjs.com/de/4x/api.html#req.body)
  *
  * As a response, an array with Geo Tag objects is rendered as JSON.
  * If 'searchterm' is present, it will be filtered by search term.
@@ -160,7 +153,7 @@ router.post('/discovery', (req, res) => {
 
 // TODO: ... your code here ...
 router.get('/api/geotags', (req, res) => {
-  const { latitudeDiscovery, longitudeDiscovery, searchterm } = req.body;
+  const { latitude, longitude, searchterm } = req.query;
 
   let filteredTags = inMemoryStore.getNearbyGeoTags(latitude, longitude, 100000);
   if (searchterm != undefined && searchterm != "") {
@@ -233,11 +226,12 @@ router.get('/api/geotags/:id', (req, res) => {
 // TODO: ... your code here ...
 router.put('/api/geotags/:id', (req, res) => {
   const id = req.params.id;
-  const { name, latitude, longitude, hashtag } = req.body;
+  const { locationName, latitude, longitude, hashtag } = req.query;
+
   var tag = inMemoryStore.getById(id);
 
   if (tag) {
-    tag.setName(name);
+    tag.setLocationName(locationName);
     tag.setLatitude(latitude);
     tag.setLongitude(longitude);
     tag.setHashtag(hashtag);
@@ -257,16 +251,15 @@ router.put('/api/geotags/:id', (req, res) => {
  */
 
 // TODO: ... your code here ...
-//Tag might need to be a var?
 router.delete('/api/geotags/:id', (req, res) => {
   const id = req.params.id;
-  const tag = inMemoryStore.getById(id);
+  var Tag = inMemoryStore.getById(id);
 
-  if (tag) {
-    inMemoryStore.removeGeoTag(tag.getName());
+  if (Tag) {
+    inMemoryStore.removeGeoTag(Tag.locationName);
   }
 
-  res.json(tag);
+  res.json(Tag);
 });
 
 module.exports = router;
