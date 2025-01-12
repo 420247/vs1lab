@@ -116,31 +116,31 @@ Zur Übersicht folgen noch mal alle Anforderungen in kompakter Form als Checklis
 
 ### 1. Teilaufgabe: Server-Erweiterung
 
-- [ ] Neue **Routen** realisieren (`./routers/index.js`)
-  - [ ] GET `/api/geotags`
-  - [ ] POST `/api/geotags`
-  - [ ] GET `/api/geotags/:id`
-  - [ ] PUT `/api/geotags/:id`
-  - [ ] DELETE `/api/geotags/:id`
-- [ ] **Servermodule erweitern**
-  - [ ] Klasse `InMemoryGeoTagStore` mit Primärschlüsseln für GeoTags
+- [X] Neue **Routen** realisieren (`./routers/index.js`)
+  - [X] GET `/api/geotags`
+  - [X] POST `/api/geotags`
+  - [X] GET `/api/geotags/:id`
+  - [X] PUT `/api/geotags/:id`
+  - [X] DELETE `/api/geotags/:id`
+- [X] **Servermodule erweitern**
+  - [X] Klasse `InMemoryGeoTagStore` mit Primärschlüsseln für GeoTags
 - [ ] Backend **Demonstrator** mit **generischem HTTP-Client**
   - [ ]  **Lebenszyklus** für GeoTag vorführen: Erstellen, Auslesen, Ändern, Suchen, Löschen
 
 ### 2. Teilaufgabe: Client-Erweiterung
 
-- [ ] **Formularauswertung** ändern
-  - [ ] **Event-Listener** für beide Formulare registrieren
-  - [ ] **Absenden** der Formulare verhindern
-  - [ ] **Formular-Validierung** bleibt erhalten
+- [X] **Formularauswertung** ändern
+  - [X] **Event-Listener** für beide Formulare registrieren
+  - [X] **Absenden** der Formulare verhindern
+  - [X] **Formular-Validierung** bleibt erhalten
 - [ ] **AJAX-Aufrufe** per **Fetch API** hinzufügen
   - [ ] Aufruf im **Tagging Formular** *asynchron*
     - [ ] *HTTP POST* mit Body in *JSON Format*
   - [ ] Aufruf im **Discovery Formular** *asynchron*
     - [ ] *HTTP GET* mit *Query Parametern* 
-- [ ] **Anzeigeaktualisierung** realisieren
-  - [ ] **Ergebnisliste** aktualisieren
-  - [ ] **Karte** aktualisieren
+- [X] **Anzeigeaktualisierung** realisieren
+  - [X] **Ergebnisliste** aktualisieren
+  - [X] **Karte** aktualisieren
 
 ### Zusatzaufgabe: Pagination
 
