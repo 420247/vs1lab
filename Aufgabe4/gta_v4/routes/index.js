@@ -51,6 +51,25 @@ router.get('/', (req, res) => {
   res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude: latitude, longitude: longitude })
 });
 
+router.get('/', (req, res) => {
+
+  const { latitude, longitude, page = 1, limit = 5 } = req.query;
+  const allTags = inMemoryStore.getAllGeoTags();
+  const totalTags = allTags.length;
+  const paginatedTags = allTags.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(allTags.length / limit);
+  currentPage = parseInt(page);
+
+  res.render('index', {
+    taglist: allTags,
+    latitude: latitude, longitude: longitude,
+    totalPages: totalPages,
+    currentPage: currentPage,
+    totalTags: totalTags
+  })
+  
+});
+
 /**
  * Route '/tagging' for HTTP 'POST' requests.
  * (http://expressjs.com/de/4x/api.html#app.post.method)

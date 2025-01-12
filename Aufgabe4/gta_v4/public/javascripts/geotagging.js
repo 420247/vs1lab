@@ -22,7 +22,7 @@ function updateLocation() {
     const taglist_json = mapDiv.getAttribute('data-tags');
     const tags = JSON.parse(taglist_json);
 
-    var mapManager = new MapManager();
+    var mapManager = new mapManager();
     
     if (latitudeView.value == "" || longitudeView.value == "" || latitudeDiscovery.value == "" || longitudeDiscovery.value == "") {
         
@@ -50,7 +50,92 @@ function updateLocation() {
     
 }
 
+async function handleTaggingFormSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    const geoTagData = {
+        name: formData.get('name'),
+        latitude: formData.get('latitude'),
+        longitude: formData.get('longitude'),
+        hashtag: formData.get('hashtag'),
+    };
+
+    const response = await fetch('/api/geotags', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(geoTagData)
+    });
+
+    const data = await response.json();
+    console.log('Success:', data);
+
+    // Updating the tag list and map
+    tags.push(data);
+    mapDiv.setAttribute('data-tags', JSON.stringify(tags));
+
+    mapManager.updateMarkers(geoTagData.latitude, geoTagData.longitude, tags);
+
+    const taglistElement = document.getElementById('discoveryResults');
+    const li = document.createElement('li');
+    li.textContent = `${geoTagData.name} (${geoTagData.latitude}, ${geoTagData.longitude}) ${geoTagData.hashtag}`;
+    taglistElement.appendChild(li);
+}
+
+async function handleDiscoveryFormSubmit(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    var latitude = latitudeDiscovery.value;
+    var longitude = longitudeDiscovery.value;
+    var searchterm = formData.get('searchterm');
+
+    const params = new URLSearchParams({
+        latitude: latitude,
+        longitude: longitude,
+        searchterm: searchterm
+    })
+
+
+
+    await fetch(`/api/geotags?${params}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+    }).then(response => response.json())
+        .then(data => {
+
+            const taglistElement = document.getElementById('discoveryResults');
+            taglistElement.innerHTML = ''; // Clear previous results
+            for (const tag of data) {
+                const li = document.createElement('li');
+                li.textContent = `${tag.locationName} (${tag.latitude}, ${tag.longitude}) ${tag.hashtag}`;
+                taglistElement.appendChild(li);
+            }
+
+            mapManager.updateMarkers(latitude, longitude, data);
+        })
+}
+
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
     updateLocation();
+
+    const tagForm = document.getElementById('tag-form');
+        if (tagForm) {
+            tagForm.addEventListener('submit', handleTaggingFormSubmit);
+        }
+
+        const filterForm = document.getElementById('discoveryFilterForm');
+        if (filterForm) {
+            filterForm.addEventListener('submit', handleDiscoveryFormSubmit);
+        }
 });
