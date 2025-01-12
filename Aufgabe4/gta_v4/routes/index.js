@@ -40,12 +40,12 @@ inMemoryStore.loadExamples();
  */
 
 // TODO: extend the following route example if necessary
-router.get('/', (req, res) => {
+/*router.get('/', (req, res) => {
 
   const { latitude, longitude } = req.query;
 
   res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude: latitude, longitude: longitude })
-});
+});*/
 
 router.get('/', (req, res) => {
 
@@ -155,12 +155,11 @@ router.post('/discovery', (req, res) => {
 router.get('/api/geotags', (req, res) => {
   const { latitude, longitude, searchterm } = req.query;
 
-  let filteredTags = inMemoryStore.getNearbyGeoTags(latitude, longitude, 100000);
-  if (searchterm != undefined && searchterm != "") {
-    filteredTags = inMemoryStore.searchNearbyGeoTags(latitude, longitude, 100000, searchterm);
-  }
-
-  res.json(filteredTags);
+    let filteredTags = inMemoryStore.getNearbyGeoTags(latitude, longitude, 100000);
+    if (searchterm && searchterm.trim() !== "") {
+        filteredTags = inMemoryStore.searchNearbyGeoTags(latitude, longitude, 100000, searchterm);
+    }
+    res.json(filteredTags);
 });
 
 /**
