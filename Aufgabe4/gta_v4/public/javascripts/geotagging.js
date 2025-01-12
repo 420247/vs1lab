@@ -169,7 +169,7 @@ async function updateCurrentPage(newPage) {
         taglistElement.appendChild(li);
     });
 
-    document.getElementById('pageInfo').textContent = `${currentPage}/${totalPages} (${totalTags})`;
+    document.getElementById('pageInfo').textContent = `${currentPage} / ${totalPages}`;
 }
 
 const prevButton = document.getElementById('prevPage');
