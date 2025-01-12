@@ -117,6 +117,10 @@ class InMemoryGeoTagStore{
         });
 
     }
+
+    getById(id){
+        return this.#geoTagsArray.find(tag => tag.id == id);     
+    }
 }
 
 module.exports = InMemoryGeoTagStore
