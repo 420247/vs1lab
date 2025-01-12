@@ -101,6 +101,14 @@ class InMemoryGeoTagStore{
         return rad * c;
     }
 
+    calcDistance2(lat1, lon1, lat2, lon2) {
+        let dLat = (lat2 - lat1);
+        let dLon = (lon2 - lon1);
+
+        let pyta = Math.pow(dLat, 2) + Math.pow(dLon, 2);
+        return Math.sqrt(pyta);
+    }
+
     getAllGeoTags() {
         let allGeoTags = [];
         for (let i = 0; i < this.#geoTagsArray.length; i++) {
