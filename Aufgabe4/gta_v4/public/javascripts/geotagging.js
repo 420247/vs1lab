@@ -22,7 +22,8 @@ function updateLocation() {
     const taglist_json = mapDiv.getAttribute('data-tags');
     const tags = JSON.parse(taglist_json);
 
-    var mapManager = new mapManager();
+    //dont know why VS wants to do mapManager(), but DO NOT change
+    var mapManager = new MapManager();
     
     if (latitudeView.value == "" || longitudeView.value == "" || latitudeDiscovery.value == "" || longitudeDiscovery.value == "") {
         

@@ -35,7 +35,7 @@ class InMemoryGeoTagStore{
     }
 
     addGeoTag(geoTag) {
-        geoTag.id = this.iDs++;
+        geoTag.setID(this.iDs++);
         this.#geoTagsArray.push(geoTag);
     }
 
