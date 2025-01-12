@@ -140,3 +140,48 @@ document.addEventListener("DOMContentLoaded", () => {
             filterForm.addEventListener('submit', handleDiscoveryFormSubmit);
         }
 });
+
+let currentPage = 1;
+let totalTags;
+let totalPages;
+
+async function updateCurrentPage(newPage) {
+
+    const response = await fetch(`/page/?page=${newPage}`);
+    if (!response.ok) {
+        throw new Error('Failed to update page');
+    }
+    const data = await response.json();
+
+    currentPage = data.currentPage;
+    totalTags = data.totalTags;
+    totalPages = data.totalPages;
+
+    const taglistElement = document.getElementById('discoveryResults');
+
+    taglistElement.innerHTML = ''; // Clear previous results
+    data.taglist.forEach(tag => {
+        const li = document.createElement('li');
+        li.textContent = `${tag.locationName} (${tag.latitude}, ${tag.longitude}) ${tag.hashtag}`;
+        taglistElement.appendChild(li);
+    });
+
+    document.getElementById('pageInfo').textContent = `${currentPage}/${totalPages} (${totalTags})`;
+
+}
+
+const prevButton = document.getElementById('prevPage');
+prevButton.addEventListener('click', async () => {
+    if (currentPage > 1) {
+        await updateCurrentPage(currentPage - 1);
+    }
+});
+
+const nextButton = document.getElementById('nextPage');
+nextButton.addEventListener('click', async () => {
+    if (currentPage < totalPages) {
+        await updateCurrentPage(currentPage + 1);
+    }
+});
+
+updateCurrentPage(currentPage);
