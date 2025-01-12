@@ -73,7 +73,6 @@ async function handleTaggingFormSubmit(event) {
     });
 
     const data = await response.json();
-    console.log('Success:', data);
 
     // Updating the tag list and map
     tags.push(data);
@@ -103,8 +102,6 @@ async function handleDiscoveryFormSubmit(event) {
         searchterm: searchterm
     })
 
-
-
     await fetch(`/api/geotags?${params}`, {
         method: 'GET',
         headers: {
@@ -122,12 +119,9 @@ async function handleDiscoveryFormSubmit(event) {
                 taglistElement.appendChild(li);
             }
 
-            mapManager.updateMarkers(latitude, longitude, data);
+            mapManager.updateMarkers(latitude, longitude, taglistElement);
+            
         })
-
-        .catch((error) => {
-            console.error('Error:', error);
-        });
 }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -144,7 +138,7 @@ async function handleDiscoveryFormSubmit(event) {
         }
     });
 
-let currentPage = 1;
+/*let currentPage = 1;
 let totalTags;
 let totalPages;
 
@@ -186,6 +180,6 @@ nextButton.addEventListener('click', async () => {
     }
 });
 
-updateCurrentPage(currentPage);
+updateCurrentPage(currentPage);*/
 
 

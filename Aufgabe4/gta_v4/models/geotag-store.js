@@ -53,9 +53,9 @@ class InMemoryGeoTagStore {
 
         for (let i = 0; i < this.#geoTagsArray.length; i++) {
             const currentTag = this.#geoTagsArray[i];
-
+    
             const distance = this.calcDistance(latitude, longitude, currentTag.getLatitude(), currentTag.getLongitude());
-
+    
             if (distance <= radius) {
                 foundGeoTags.push(this.#geoTagsArray[i]);
             }
@@ -83,7 +83,7 @@ class InMemoryGeoTagStore {
         return foundGeoTags;
     }
 
-    calcDistance(lat1, lon1, lat2, lon2) {
+    calcDistance2(lat1, lon1, lat2, lon2) {
         let dLat = (lat2 - lat1) * Math.PI / 180.0;
         let dLon = (lon2 - lon1) * Math.PI / 180.0;
         lat1 = (lat1) * Math.PI / 180.0;
@@ -97,7 +97,7 @@ class InMemoryGeoTagStore {
         return rad * c;
     }
 
-    calcDistance2(lat1, lon1, lat2, lon2) {
+    calcDistance(lat1, lon1, lat2, lon2) {
         let dLat = (lat2 - lat1);
         let dLon = (lon2 - lon1);
 
