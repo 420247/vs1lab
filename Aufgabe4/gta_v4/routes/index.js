@@ -44,16 +44,20 @@ inMemoryStore.loadExamples();
  */
 
 // TODO: extend the following route example if necessary
-router.get('/', (req, res) => {
+/*router.get('/', (req, res) => {
 
   const {latitude, longitude} = req.query;
 
   res.render('index', { taglist: inMemoryStore.getAllGeoTags(), latitude: latitude, longitude: longitude })
-});
+}); */
+
+//Pagination
 
 router.get('/', (req, res) => {
 
-  const { latitude, longitude, page = 1, limit = 5 } = req.query;
+  const {latitude, longitude} = req.query;
+  const page = 1;
+  const limit = 5;
   const allTags = inMemoryStore.getAllGeoTags();
   const totalTags = allTags.length;
   const paginatedTags = allTags.slice((page - 1) * limit, page * limit);
@@ -68,6 +72,24 @@ router.get('/', (req, res) => {
     totalTags: totalTags
   })
   
+});
+
+router.get('/page/', (req, res) => {
+  const { latitude, longitude, page = 1, limit = 5} = req.query;
+  const allTags = inMemoryStore.getAllGeoTags();
+  totalTags = allTags.length;
+  const paginatedTags = allTags.slice((page - 1) * limit, page * limit);
+  const totalPages = Math.ceil(allTags.length / limit);
+  const currentPage = parseInt(page);
+
+  res.json({
+    taglist: paginatedTags,
+    latitude: latitude,
+    longitude: longitude,
+    totalPages: totalPages,
+    currentPage: currentPage,
+    totalTags: totalTags
+  });
 });
 
 /**

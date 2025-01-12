@@ -75,6 +75,11 @@
                             </li>
                             <% }); %>
                     </ul>
+                    <div class="discovery__pagination" >
+                        <button id="prevPage">&lt;</button>
+                        <span id="pageInfo"><%# currentPage %>/<%# totalPages %> (<%# totalTags %>)</span>
+                        <button id="nextPage">&gt;</button>
+                    </div>
                 </div>
 
                 <div class="discovery__map">

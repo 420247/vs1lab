@@ -243,6 +243,18 @@ a {
   color: var(--gray-color);
 }
 
+.discovery__pagination{
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.discovery__pagination span{
+  padding: 0 10px;
+}
+
 #map { 
   height: 500px;
   width: 500px;
